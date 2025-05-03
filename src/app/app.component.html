@@ -2,18 +2,17 @@
 
 <main>
   <ul id="users">
+    <!-- Track will track any changes in database -->
+    @for (user of users; track user.id){
     <li>
-      <app-user [user]="users[0]" (select)="onSelect($event)"></app-user>
+      <app-user [user]="user" (select)="onSelect($event)"></app-user>
     </li>
-    <li>
-      <app-user [user]="users[1]" (select)="onSelect($event)"></app-user>
-    </li>
-    <li>
-      <app-user [user]="users[2]" (select)="onSelect($event)"></app-user>
-    </li>
-    <li>
-      <app-user [user]="users[3]" (select)="onSelect($event)"></app-user>
-    </li>
+    }
   </ul>
-  <app-tasks [task]="selectedUser?.name"></app-tasks>
+
+  @if (selectedUser){
+  <app-tasks [task]="selectedUser.name"></app-tasks>
+  } @else {
+  <p id="fallback">Select a user to see their tasks!</p>
+  }
 </main>
