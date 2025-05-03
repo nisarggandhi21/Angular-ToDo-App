@@ -5,7 +5,11 @@
     <!-- Track will track any changes in database -->
     @for (user of users; track user.id){
     <li>
-      <app-user [user]="user" (select)="onSelect($event)"></app-user>
+      <app-user
+        [user]="user"
+        [selected]="user.id === selectedUserId"
+        (select)="onSelect($event)"
+      ></app-user>
     </li>
     }
   </ul>
