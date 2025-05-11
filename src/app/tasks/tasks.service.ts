@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { type NewtaskData } from './task/task.model';
+
+import { type NewTaskData } from './task/task.model';
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
@@ -31,16 +32,17 @@ export class TasksService {
 
   constructor() {
     const tasks = localStorage.getItem('tasks');
+
     if (tasks) {
       this.tasks = JSON.parse(tasks);
     }
   }
 
-  getUserTask(userId: string) {
+  getUserTasks(userId: string) {
     return this.tasks.filter((task) => task.userId === userId);
   }
 
-  addTask(taskData: NewtaskData, userId: string) {
+  addTask(taskData: NewTaskData, userId: string) {
     this.tasks.unshift({
       id: new Date().getTime().toString(),
       userId: userId,
